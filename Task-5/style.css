@@ -146,7 +146,7 @@ body {
 .testimonials {
   background: linear-gradient(135deg, var(--bg), var(--brand), var(--brand-2));
   padding: 80px 20px;
-  color: #fff;
+  color: #221717;
   transition: background 0.3s ease;
 }
 body.dark .testimonials {
