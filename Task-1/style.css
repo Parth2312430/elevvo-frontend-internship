@@ -1,0 +1,213 @@
+:root{
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 68px;
+  --transition: 260ms cubic-bezier(.2,.9,.2,1);
+  --bg: #0b1220;
+  --muted-bg: rgba(255,255,255,0.03);
+  --accent: #6366f1;
+  --text: #e6eef8;
+  --muted: #9aa6bf;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f4f7fb;
+  color: #0b1220;
+}
+
+/* App layout */
+.app{display:flex;min-height:100vh}
+
+/* Sidebar styles */
+#sidebar{
+  width:var(--sidebar-width);
+  background: linear-gradient(180deg,var(--bg), #071026);
+  color:var(--text);
+  transition: width var(--transition), transform var(--transition);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  z-index:1000;
+}
+.sidebar-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 14px;gap:8px;
+}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{width:36px;height:36px;flex:0 0 36px}
+.logo-text{font-weight:700;font-size:1.02rem;color:var(--text);transition:opacity var(--transition), transform var(--transition)}
+
+/* yt-icon-button */
+.style-scope.yt-icon-button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 4px;
+}
+.style-scope.yt-icon-button svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition);
+}
+
+
+
+/* Collapsed sidebar */
+body.collapsed #sidebar{
+  width:var(--sidebar-collapsed-width);
+}
+
+body.collapsed .sidebar-top {
+  justify-content: flex-end; 
+  padding: 12px 4px;
+  gap: 0;
+}
+
+
+body.collapsed .logo-text {
+  display: none;
+}
+
+/* Remove left margin for button in collapsed sidebar */
+body.collapsed .style-scope.yt-icon-button {
+  margin-left: 0;
+}
+
+/* Rotate the button icon when collapsed */
+body.collapsed .style-scope.yt-icon-button svg {
+  transform: rotate(180deg);
+}
+
+nav.nav{padding:6px 8px}
+nav ul{list-style:none;margin:8px 0;padding:0}
+nav li{margin:6px 4px}
+nav a{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;
+  border-radius:8px;
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+  font-size:0.95rem;
+  transition:background var(--transition);
+}
+nav a .icon{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px}
+nav a .icon svg{width:20px;height:20px;opacity:0.95}
+nav a:hover{background:var(--muted-bg)}
+nav a.active{background:rgba(99,102,241,0.12)}
+
+.label{transition:opacity var(--transition), transform var(--transition);white-space:nowrap}
+
+.sidebar-bottom{margin-top:auto;padding:12px}
+.btn-ghost{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--muted);
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* Content area */
+.content{flex:1;padding:20px 28px}
+.topbar{display:flex;align-items:center;gap:12px}
+.page-title{margin:0;font-size:1.1rem}
+.hamburger{display:none;background:transparent;border:0;padding:8px;border-radius:8px;cursor:pointer}
+.hamburger svg{width:20px;height:20px}
+.card{
+  background:white;
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(16,24,40,0.06);
+  max-width:900px;
+}
+
+/* Collapsed state */
+body.collapsed .logo-text,
+body.collapsed .label,
+
+/* Collapsed mode: stack icon and label vertically */
+body.collapsed nav a {
+  flex-direction: column; /* Stack vertically */
+  justify-content: center;
+  padding: 12px 0;
+  gap: 4px; /* Space between icon and text */
+}
+
+body.collapsed nav a .icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.collapsed nav a .icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #ffffff; /* White icons */
+}
+
+body.collapsed nav a .label {
+  opacity: 1 !important; /* Always visible in collapsed mode */
+  transform: none !important;
+  font-size: 0.65rem;
+  white-space: normal;
+  text-align: center;
+  color: var(--muted); /* Slightly dim text */
+}
+
+body.collapsed nav a.active .label {
+  color: var(--accent); /* Highlight active text */
+}
+
+
+body.collapsed nav a:hover .icon {
+  background-color: rgba(99, 102, 241, 0.2); /* Light accent background on hover */
+}
+
+body.collapsed nav a.active .icon {
+  background-color: rgba(99, 102, 241, 0.35); /* Stronger background for active item */
+}
+
+
+
+/* Settings icon sizing */
+.sidebar-bottom .btn-ghost .icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+@media (min-width: 769px) {
+  body.collapsed .sidebar-bottom .btn-ghost .icon svg {
+    width: 22px; /* same as other icons */
+    height: 22px;
+    stroke: #ffffff;
+  }
+}
+
+
+
+#overlay{position:fixed;inset:0;background:rgba(2,6,23,0.45);z-index:900;display:none}
+#overlay.visible{display:block}
+
+@media (max-width: 768px){
+  .hamburger{display:inline-flex}
+  #sidebar{position:fixed;left:0;top:0;height:100vh;transform:translateX(-110%);box-shadow:0 8px 30px rgba(2,6,23,0.25)}
+  body.sidebar-open #sidebar{transform:translateX(0)}
+  body.sidebar-open #overlay{display:block}
+  body.collapsed #sidebar{width:var(--sidebar-width)}
+  body.collapsed .logo-text, body.collapsed .label{opacity:1;transform:none}
+}

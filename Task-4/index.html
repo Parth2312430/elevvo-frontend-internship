@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Blog — Homepage</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="brand">My Blog</h1>
+      <p class="tagline">Stories on Tech, Travel, and Food.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Controls -->
+    <section class="controls" aria-label="Filters">
+      <div class="filters" role="tablist" aria-label="Categories">
+        <button class="filter-btn active" data-category="All" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-category="Tech" role="tab" aria-selected="false">Tech</button>
+        <button class="filter-btn" data-category="Travel" role="tab" aria-selected="false">Travel</button>
+        <button class="filter-btn" data-category="Food" role="tab" aria-selected="false">Food</button>
+      </div>
+
+      <form class="search" id="searchForm" role="search" aria-label="Search posts">
+        <input id="searchInput" type="search" placeholder="Search by title…" aria-label="Search by title" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+    </section>
+
+    <!-- New toolbar -->
+    <section class="toolbar">
+      <label>
+        Posts per page:
+        <select id="perPageSelect">
+          <option value="3">3</option>
+          <option value="6" selected>6</option>
+          <option value="9">9</option>
+        </select>
+      </label>
+
+      <button id="darkToggle" class="btn small">🌙 Dark Mode</button>
+    </section>
+
+    <!-- Posts grid -->
+    <section id="posts" class="grid" aria-live="polite" aria-busy="false"></section>
+
+    <!-- Empty state -->
+    <p id="emptyState" class="empty" hidden>No posts match your filters.</p>
+
+    <!-- Pagination -->
+    <nav id="pagination" class="pagination" role="navigation" aria-label="Pagination"></nav>
+  </main>
+
+  <footer class="container footer">
+    © <span id="year"></span> My Blog. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
