@@ -1,1 +1,0 @@
-# Elevvo Frontend Internship Tasks
